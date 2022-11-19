@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
 import java.util.UUID;
@@ -43,7 +44,7 @@ public class MultipartTest {
 
     @Test
     public void testUploadMultipartFormdata(@TempDir Path tempDir) throws IOException {
-        File testFile = File.createTempFile("test", "", tempDir.toFile());
+        File testFile = Files.createTempFile(tempDir.toFile().toPath(), "test", "").toFile();
         try (PrintWriter printWriter = new PrintWriter(testFile)) {
             printWriter.print("Content of the file");
         }

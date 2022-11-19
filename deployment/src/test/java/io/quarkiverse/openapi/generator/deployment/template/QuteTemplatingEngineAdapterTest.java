@@ -21,7 +21,7 @@ public class QuteTemplatingEngineAdapterTest {
         final String petstoreOpenApi = requireNonNull(this.getClass().getResource("/openapi/petstore-openapi.json")).getPath();
         final DefaultGenerator generator = new DefaultGenerator();
         final CodegenConfigurator configurator = new QuarkusCodegenConfigurator();
-        final File apiFile = File.createTempFile("api", "java");
+        final File apiFile = Files.createTempFile("api", "java").toFile();
         apiFile.deleteOnExit();
         configurator.setInputSpec(petstoreOpenApi);
         generator.opts(configurator.toClientOptInput());
